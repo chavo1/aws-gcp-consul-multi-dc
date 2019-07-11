@@ -4,7 +4,7 @@
 
 ## AWS VPC
 
-### [This module](https://github.com/chavo1/aws-vpc-terraform) will create two VPC in two separate AWS regions
+### [This module](https://github.com/chavo1/aws-vpc-terraform) will create VPC in AWS region "us-east-1"
 
 ## AWS Client VPN
 
