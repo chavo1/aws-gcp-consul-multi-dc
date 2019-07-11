@@ -1,0 +1,37 @@
+###!/usr/bin/env ruby
+
+private_ip_dc1 = attribute(
+  "private_ip_dc1",
+  description: "private ip"
+)
+
+private_ip_dc2 = attribute(
+  "private_ip_dc2",
+  description: "private ip"
+)
+
+# puts(private_ip_dc1.length)
+# puts(private_ip_dc2.length)
+
+1.upto(private_ip_dc1.length) do |x|
+  describe http("http://#{private_ip_dc1[x -1]}:8500/ui/sofia/services") do
+    its('status') { should cmp 200 }
+  end
+  describe http("http://#{private_ip_dc1[x -1]}:8500/ui/sofia/nodes") do
+    its('status') { should cmp 200 }
+  end
+  describe http("http://#{private_ip_dc1[x -1]}:8500/ui/sofia/services/web") do
+    its('status') { should cmp 200 }
+  end
+end
+1.upto(private_ip_dc2.length) do |y|
+  describe http("http://#{private_ip_dc2[y -1]}:8500/ui/varna/services") do
+  its('status') { should cmp 200 }
+  end
+  describe http("http://#{private_ip_dc2[y -1]}:8500/ui/varna/nodes") do
+    its('status') { should cmp 200 }
+  end
+  describe http("http://#{private_ip_dc2[y -1]}:8500/ui/varna/services/web") do
+    its('status') { should cmp 200 }
+  end
+end
