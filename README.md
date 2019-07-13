@@ -16,7 +16,7 @@
 
 ## AWS IPsec VPN
 ### [This module](https://cloud.google.com/) will create a VPN connection between AWS and GCP.
-- You must add "GCP External IP address - Reserved static address" into the *.tfvars, please check rhe example.tfvars
+- You must add "GCP External IP address - Reserved static address" into the *.tfvars, please check the example.tfvars
 
 ## Prerequisites
 
