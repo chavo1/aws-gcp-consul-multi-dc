@@ -1,0 +1,2 @@
+{{ datacenters }}
+{{printf "%s/nginx" (env "HOST") | key}}

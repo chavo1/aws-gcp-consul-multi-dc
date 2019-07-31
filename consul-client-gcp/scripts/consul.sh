@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 export IPs=$(hostname -I)
 export HOST=$(hostname)
-export DC="gcp_virginia"
+export DC=$1
 
 sudo killall consul
 sudo mkdir -p /etc/consul.d/ /opt/consul/
@@ -25,16 +25,11 @@ fi
 
 NODE_TYPE=client
 WAN=""
-# Cloud Auto-joining 
-# LAN=", \"retry_join\": [ \"provider=aws tag_key=consul tag_value=app\" ]"
 # Joining with private IPs
 LAN=", \"retry_join\": [ \"$DC_RANGE.11\", \"$DC_RANGE.12\", \"$DC_RANGE.13\" ]"
-# WAN=", \"retry_join_wan\": [ \"$DC_RANGE_OP.11\", \"$DC_RANGE_OP.12\", \"$DC_RANGE_OP.13\" ]"
-
 # if the name contain ip-172-31-*-1 we are on server
 if [[ $HOST =~ ip-172-31-16-1 || $HOST =~ ip-172-31-32-1 || $HOST =~ ip-172-31-48-1 ]]; then
   NODE_TYPE=server
-  # WAN=", \"retry_join_wan\": [ \"provider=aws tag_key=consul_wan tag_value=wan_app\" ]"
   # Joining with private IPs
   WAN=", \"retry_join_wan\": [ \"$DC_RANGE_OP.11\", \"$DC_RANGE_OP.12\", \"$DC_RANGE_OP.13\" ]"
 fi
@@ -73,3 +68,4 @@ echo consul started
 set +x
 sleep 10
 consul members
+

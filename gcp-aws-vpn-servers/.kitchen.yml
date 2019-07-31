@@ -11,8 +11,8 @@ verifier:
     - name: basic
       backend: local
       attrs_outputs:
-        servers_virginia_private: private_ip_dc1
-        servers_virginia_public: public_dns_servers_virginia
+        servers_gcp_private: private_ip_gcp
+        servers_gcp_public: public_ip_gcp
 
 platforms:
   - name: terraform

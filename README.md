@@ -46,13 +46,19 @@ terraform apply
 ### After deploying the Infra and Consul servers is time for Consul clients.
   - | To spin up the client agents we use [Terraform Local Backend](https://www.terraform.io/docs/backends/types/local.html#example-reference) - we just reference the data. 
 
-#### Go to the consul_client_dc1, setup a needed count for the clients in the main.tf file.
+#### For AWS go to the consul_client_dc1, setup a needed count for the clients in the main.tf file.
 ```
 terraform init
 terraform apply 
 ```
-## We can continue with Consul - GCP deployment.
+## We can continue with Consul servers - GCP deployment.
 - Go to the "gcp-aws-vpn-servers"
+```
+terraform init
+terraform apply 
+```
+## We are ready for Consul clients - GCP deployment.
+- Go to the "consul-client-gcp"
 ```
 terraform init
 terraform apply 
