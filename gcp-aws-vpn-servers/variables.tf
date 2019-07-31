@@ -17,7 +17,7 @@ variable "dc_net" {
   default = 32
 }
 variable "server_count" {
-  default = 2
+  default = 1
 }
 variable "public_key_path" {
   description = "Path to SSH public key to be attached to cloud instances"

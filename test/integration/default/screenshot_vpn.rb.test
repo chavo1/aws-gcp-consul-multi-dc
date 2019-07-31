@@ -5,16 +5,13 @@ private_ip_dc1 = attribute(
   description: "private ip"
 )
 
-private_ip_dc2 = attribute(
-  "private_ip_dc2",
-  description: "private ip"
-)
-
 puts(private_ip_dc1.length)
-puts(private_ip_dc2.length)
 
 require 'rubygems'
 require 'selenium-webdriver'
+require 'fileutils'
+
+FileUtils.mkdir_p 'scr/'
 
 1.upto(private_ip_dc1.length) do |x|
   browser = Selenium::WebDriver.for :chrome
@@ -30,17 +27,4 @@ require 'selenium-webdriver'
   browser.quit
 end
 
-1.upto(private_ip_dc2.length) do |y|
-  browser = Selenium::WebDriver.for :chrome
-  browser.get "http://#{private_ip_dc2[y -1]}:8500/ui/ohio/services"
-  sleep 2
-  browser.save_screenshot("consul_services_ohio-#{00+y}.png")
-  browser.get "http://#{private_ip_dc2[y -1]}:8500/ui/ohio/services/web"
-  sleep 2
-  browser.save_screenshot("consul_services_ohio_web-#{00+y}.png")
-  browser.get "http://#{private_ip_dc2[y -1]}:8500/ui/ohio/nodes"
-  sleep 2
-  browser.save_screenshot("consul_nodes_ohio-#{00+y}.png")
-  browser.quit
-end
 
